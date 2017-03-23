@@ -17,13 +17,9 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext container) {
-        container.setInitParameter("contextConfigLocation", "/WEB-INF/securityContext.xml");
-        container.addListener(ContextLoaderListener.class);
-
         ServletRegistration.Dynamic registration = container.addServlet("dispatcher", new DispatcherServlet());
         registration.setLoadOnStartup(1);
         registration.addMapping(API_CONTEXT);
-
     }
 
 }
