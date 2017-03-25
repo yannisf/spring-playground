@@ -1,7 +1,5 @@
 package fraglab.application;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,11 +11,9 @@ public class Address {
 
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonIgnore()
     protected Date dateCreated;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonIgnore()
     protected Date dateModified;
 
     private String streetName;
