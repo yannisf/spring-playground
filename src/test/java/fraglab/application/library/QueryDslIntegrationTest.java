@@ -1,19 +1,21 @@
 package fraglab.application.library;
 
-import org.junit.BeforeClass;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.web.context.WebApplicationContext;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static fraglab.application.library.Genre.FICTION;
@@ -26,27 +28,16 @@ import static fraglab.application.library.Genre.SHORT_STORIES;
         TransactionalTestExecutionListener.class
 })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class BookIntegrationTest {
+public class QueryDslIntegrationTest {
 
     @Autowired
     AuthorService authorService;
 
-    @Autowired
-    AuthorJpaRepository authorJpaRepository;
+    @PersistenceContext
+    EntityManager entityManager;
 
-    @Autowired
-    BookJpaRepository bookJpaRepository;
-
-    Long authorId;
-
-    @Test
-    public void a_cleanup() {
-        authorJpaRepository.findAll().stream()
-                .forEach(a -> authorJpaRepository.delete(a));
-    }
-
-    @Test
-    public void b_testInsert() {
+    @Before
+    public void setup() {
         Author author1 = Author.Builder.createBuilder()
                 .name("Antonis Samarakis")
                 .books(
@@ -69,31 +60,14 @@ public class BookIntegrationTest {
     }
 
     @Test
-    public void c_testFindByGenre() {
-        List<Book> fiction = bookJpaRepository.findByGenre(FICTION);
-        List<Book> shortStories = bookJpaRepository.findByGenre(SHORT_STORIES);
-        System.out.println("stop");
-    }
-
-    @Test
-    public void d_testFindByAuthor() {
-        List<Book> samarakisBooks = bookJpaRepository.findByAuthorId(1L);
-        List<Book> kafkaBooks = bookJpaRepository.findByAuthorNameStartingWith("Franz");
-        System.out.println("stop");
-    }
-
-    @Test
-    public void e_removeOneBook() {
-        Author author = authorJpaRepository.findAll().get(0);
-        Book book = author.getBooks().get(0);
-        author.removeBook(book);
-        authorService.save(author);
-    }
-
-    @Test
-    public void f_loadAAuthor() {
-        Author author = authorService.find(1L).get();
-        System.out.println(author);
+    public void testQueryDsl() {
+        QAuthor author = QAuthor.author;
+        JPAQueryFactory factory = new JPAQueryFactory(entityManager);
+        Author antonis_samarakis = factory
+                .selectFrom(author)
+                .where(author.name.startsWithIgnoreCase("antonis"))
+                .fetchOne();
+        System.out.println("Found: " + antonis_samarakis);
     }
 
 }
