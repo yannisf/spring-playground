@@ -17,7 +17,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext container) {
-        ServletRegistration.Dynamic registration = container.addServlet("dispatcher", new DispatcherServlet());
+        ServletRegistration.Dynamic registration = container.addServlet("api", new DispatcherServlet());
         registration.setLoadOnStartup(1);
         registration.addMapping(API_CONTEXT);
     }
