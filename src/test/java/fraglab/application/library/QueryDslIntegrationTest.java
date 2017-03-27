@@ -67,6 +67,12 @@ public class QueryDslIntegrationTest {
                 .selectFrom(author)
                 .where(author.name.startsWithIgnoreCase("antonis"))
                 .fetchOne();
+        QBook book = QBook.book;
+        List<Book> samarakisShortStories = factory
+                .selectFrom(book)
+                .where(
+                        book.author.name.containsIgnoreCase("samarakis")
+                                .and(book.genre.eq(SHORT_STORIES))).fetch();
         System.out.println("Found: " + antonis_samarakis);
     }
 
