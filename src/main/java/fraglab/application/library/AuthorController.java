@@ -12,20 +12,8 @@ public class AuthorController {
     AuthorService authorService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Author find(@PathVariable Long id) {
-        return authorService.find(id).orElseThrow(RuntimeException::new);
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void save(@RequestBody Author author) {
-        authorService.save(author);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void delete(@PathVariable Long id) {
-        authorService.delete(id);
+    public String process(@PathVariable Long id) {
+        return authorService.process();
     }
 
 }

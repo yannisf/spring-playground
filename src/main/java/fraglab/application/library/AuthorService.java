@@ -1,14 +1,12 @@
 package fraglab.application.library;
 
-import fraglab.application.library.Author;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+@Service
+public class AuthorService {
 
-public interface AuthorService {
+    public String process() {
+        return "processed";
+    }
 
-    Optional<Author> find(Long id);
-
-    Author save(Author author);
-
-    void delete(Long id);
 }

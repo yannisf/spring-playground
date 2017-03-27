@@ -1,20 +1,13 @@
 package fraglab.application.library;
 
-import javax.persistence.*;
-
-@Entity
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
 
-    @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    @ManyToOne()
     private Author author;
 
     public Book() {

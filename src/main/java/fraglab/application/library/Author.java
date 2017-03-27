@@ -1,21 +1,16 @@
 package fraglab.application.library;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Entity
 public class Author {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "author", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Book> books;
 
     public Author() { }
