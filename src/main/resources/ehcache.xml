@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+
+    <!--<diskStore path="java.io.tmpdir"/>-->
+    <diskStore path="c:/local/tmp"/>
+
+    <!-- cache named local
+        Contains a maximum in memory of 3 elements, expires an element idle for more than 10 seconds
+        or lives for more than 30 seconds. If there are more than 3 elements overflows to disk cache
+    -->
+    <cache name="local"
+           maxEntriesLocalHeap="3"
+           maxEntriesLocalDisk="10"
+           eternal="false"
+           diskSpoolBufferSizeMB="1"
+           timeToIdleSeconds="10" timeToLiveSeconds="30"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
+        <persistence strategy="localTempSwap" />
+    </cache>
+
+</ehcache>
