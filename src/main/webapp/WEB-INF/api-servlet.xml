@@ -34,10 +34,11 @@
     <!-- Wrap connection factory with a Spring JMS connect connection factory -->
     <bean id="jmsConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
         <property name="targetConnectionFactory" ref="amqConnectionFactory"/>
+        <property name="reconnectOnException" value="true"/>
     </bean>
 
     <!-- Create a JMS listener container factory -->
-    <bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
+    <bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.SimpleJmsListenerContainerFactory">
         <property name="connectionFactory" ref="jmsConnectionFactory"/>
     </bean>
 
