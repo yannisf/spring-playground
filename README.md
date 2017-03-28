@@ -1,3 +1,23 @@
+## JMS
+A typical JMS programming flow concerns:
+
+1. Setting up a broker (e.g. ActiveMQ)
+### Sender (producer)
+2. Creatings a connection factory for this broker
+3. Getting a connection from the connection factory
+4. Getting a session from the connection
+5. Creating a destination (queue or topic)
+6. Creating a message producer from the session using the destination
+7. Sending the message
+### Receiver (consumer)
+8. Creatings a connection factory for this broker
+3. Getting a connection from the connection factory
+4. Getting a session from the connection
+5. Creating a destination (queue or topic)
+6. Creating a message consumer from the session using the destination
+7. Receive the message 
+
+
 ## Testing
 
 ### Integration tests
