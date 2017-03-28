@@ -22,12 +22,9 @@ public class AuthorService {
 
     public void publish(Book book) {
         System.out.println("Publishing");
-        jmsTemplate.send(new MessageCreator() {
-            public Message createMessage(Session session) throws JMSException {
-                System.out.println("Sending message");
-                TextMessage message = session.createTextMessage(book.getTitle());
-                return message;
-            }
+        jmsTemplate.send(session -> {
+            System.out.println("Sending message");
+            return session.createObjectMessage(book.getTitle());
         });
 
     }
