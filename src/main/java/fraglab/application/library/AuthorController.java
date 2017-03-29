@@ -16,7 +16,7 @@ public class AuthorController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String process(@PathVariable Long id) {
-        return authorService.process();
+        return authorService.process(null);
     }
 
     @RequestMapping(value = "/publish", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)

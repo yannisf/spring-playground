@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageProcessor {
 
-    @JmsListener(destination = "fraglab.jms")
+//    @JmsListener(destination = "fraglab.jms")
     public void process(String text) {
         System.out.println(String.format("Text is [%s]", text));
     }

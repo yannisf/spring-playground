@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <platform-bom.version>2.0.8.RELEASE</platform-bom.version>
+        <camel-spring.version>2.18.3</camel-spring.version>
     </properties>
 
     <build>
@@ -120,6 +121,16 @@
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+            <version>${camel-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jms</artifactId>
+            <version>${camel-spring.version}</version>
         </dependency>
 
     </dependencies>

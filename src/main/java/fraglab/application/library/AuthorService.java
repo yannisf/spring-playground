@@ -1,5 +1,6 @@
 package fraglab.application.library;
 
+import org.apache.camel.Exchange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
@@ -16,7 +17,8 @@ public class AuthorService {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public String process() {
+    public String process(Exchange exchange) {
+        System.out.println("Processing..." + exchange.toString());
         return "processed";
     }
 
