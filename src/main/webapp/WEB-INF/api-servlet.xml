@@ -31,7 +31,7 @@
     <amq:queue id="destination" physicalName="fraglab.jms"/>
 
     <!-- Define the ActiveMQ connection factory -->
-    <amq:connectionFactory id="amqConnectionFactory" brokerURL="vm://localhost"/>
+    <amq:connectionFactory id="amqConnectionFactory" brokerURL="vm://localhost" trustAllPackages="true"/>
 
     <!-- Wrap connection factory with a Spring JMS connect connection factory -->
     <bean id="jmsConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">

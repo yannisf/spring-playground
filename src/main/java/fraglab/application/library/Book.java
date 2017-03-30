@@ -1,6 +1,8 @@
 package fraglab.application.library;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     private Long id;
 

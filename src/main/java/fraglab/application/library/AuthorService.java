@@ -3,13 +3,7 @@ package fraglab.application.library;
 import org.apache.camel.Exchange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
-
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import javax.jms.TextMessage;
 
 @Service
 public class AuthorService {
@@ -26,9 +20,19 @@ public class AuthorService {
         System.out.println("Publishing");
         jmsTemplate.send(session -> {
             System.out.println("Sending message");
-            return session.createObjectMessage(book.getTitle());
+            return session.createObjectMessage(book);
         });
 
     }
+
+    public String process1(Book book) {
+        System.out.println("Received " + book);
+        return book.getTitle();
+    }
+
+    public String process2(String body) {
+        return String.format("(process2: %s)", body);
+    }
+
 
 }
