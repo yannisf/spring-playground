@@ -30,6 +30,8 @@ import static fraglab.application.library.Genre.SHORT_STORIES;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class QueryDslIntegrationTest {
 
+    static Long authorId;
+
     @Autowired
     AuthorService authorService;
 
@@ -47,6 +49,7 @@ public class QueryDslIntegrationTest {
                 )
                 .build();
         author1 = authorService.save(author1);
+        authorId = author1.getId();
 
         Author author2 = Author.Builder.createBuilder()
                 .name("Franz Kafka")
@@ -63,10 +66,10 @@ public class QueryDslIntegrationTest {
     public void testQueryDsl() {
         QAuthor author = QAuthor.author;
         JPAQueryFactory factory = new JPAQueryFactory(entityManager);
-        Author antonis_samarakis = factory
+        List<Author> antonis_samarakis = factory
                 .selectFrom(author)
-                .where(author.name.startsWithIgnoreCase("antonis"))
-                .fetchOne();
+                .where(author.id.eq(authorId))
+                .fetch();
         QBook book = QBook.book;
         List<Book> samarakisShortStories = factory
                 .selectFrom(book)

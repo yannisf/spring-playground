@@ -37,7 +37,7 @@ public class BookIntegrationTest {
     @Autowired
     BookJpaRepository bookJpaRepository;
 
-    Long authorId;
+    static Long authorId;
 
     @Test
     public void a_cleanup() {
@@ -72,14 +72,12 @@ public class BookIntegrationTest {
     public void c_testFindByGenre() {
         List<Book> fiction = bookJpaRepository.findByGenre(FICTION);
         List<Book> shortStories = bookJpaRepository.findByGenre(SHORT_STORIES);
-        System.out.println("stop");
     }
 
     @Test
     public void d_testFindByAuthor() {
         List<Book> samarakisBooks = bookJpaRepository.findByAuthorId(1L);
         List<Book> kafkaBooks = bookJpaRepository.findByAuthorNameStartingWith("Franz");
-        System.out.println("stop");
     }
 
     @Test
@@ -88,11 +86,12 @@ public class BookIntegrationTest {
         Book book = author.getBooks().get(0);
         author.removeBook(book);
         authorService.save(author);
+        authorId = author.getId();
     }
 
     @Test
     public void f_loadAAuthor() {
-        Author author = authorService.find(1L).get();
+        Author author = authorService.find(authorId).get();
         System.out.println(author);
     }
 
