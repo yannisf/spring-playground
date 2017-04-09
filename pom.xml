@@ -14,6 +14,7 @@
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <platform-bom.version>2.0.8.RELEASE</platform-bom.version>
         <camel-spring.version>2.18.3</camel-spring.version>
+        <hazelcast.version>3.8</hazelcast.version>
     </properties>
 
     <build>
@@ -146,6 +147,16 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jms</artifactId>
             <version>${camel-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>${hazelcast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-client</artifactId>
+            <version>${hazelcast.version}</version>
         </dependency>
 
     </dependencies>
