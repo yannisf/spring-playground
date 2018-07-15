@@ -1,5 +1,7 @@
 package fraglab.application.library;
 
+import fraglab.application.jms.PlaygroundJmsListenerContainerFactory;
+import fraglab.application.jms.PlaygroundMessageListenerContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,9 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
+    @Autowired
+    private PlaygroundJmsListenerContainerFactory listenerContainerFactory;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String process(@PathVariable Long id) {
         return authorService.process();
@@ -23,6 +28,11 @@ public class AuthorController {
     public String publish() {
         authorService.publish(Book.Builder.createBuilder().title("Το Λάθος [To Lathos]").build());
         return "acknowledged";
+    }
+
+    @RequestMapping(value = "/start", method = RequestMethod.GET)
+    public void start() {
+        listenerContainerFactory.start();
     }
 
 }

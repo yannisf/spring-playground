@@ -1,21 +1,30 @@
-## JMS
+# JMS
+
 A typical JMS programming flow concerns:
 
 1. Setting up a broker (e.g. ActiveMQ)
-### Sender (producer)
-2. Creatings a connection factory for this broker
+
+## Sender (producer)
+
+2. Creating a connection factory for this broker
 3. Getting a connection from the connection factory
 4. Getting a session from the connection
 5. Creating a destination (queue or topic)
 6. Creating a message producer from the session using the destination
 7. Sending the message
-### Receiver (consumer)
-8. Creatings a connection factory for this broker
+
+## Receiver (consumer)
+8. Creating a connection factory for this broker
 3. Getting a connection from the connection factory
 4. Getting a session from the connection
 5. Creating a destination (queue or topic)
 6. Creating a message consumer from the session using the destination
 7. Receive the message 
+
+---
+A JMS listener container factory needs to be created, as to create the the JMS listener container (the container where the JMS listener will exist). Typically the SimpleJmsListenerContainerFactory, but a more complete option is the DefaultJmsListenerContainerFactory.
+
+Within a JMS listener container, exists the DefaultMessageListenerContainer that is the core of the JMS listener container.
 
 
 ## Testing

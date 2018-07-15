@@ -38,7 +38,7 @@
     </bean>
 
     <!-- Create a JMS listener container factory -->
-    <bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.SimpleJmsListenerContainerFactory">
+    <bean id="jmsListenerContainerFactory" class="fraglab.application.jms.PlaygroundJmsListenerContainerFactory">
         <property name="connectionFactory" ref="jmsConnectionFactory"/>
     </bean>
 
