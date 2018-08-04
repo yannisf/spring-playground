@@ -13,13 +13,13 @@ public class AuthorController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Author find(@PathVariable Long id) {
-        return authorService.find(id).orElseThrow(RuntimeException::new);
+        return authorService.find(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT, consumes = "application/x-www-form-urlencoded")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void save(@RequestBody Author author) {
-        authorService.save(author);
+    public void save(@RequestParam String name) {
+        authorService.save(new Author(name));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

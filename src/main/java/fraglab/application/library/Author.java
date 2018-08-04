@@ -2,8 +2,6 @@ package fraglab.application.library;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -18,7 +16,8 @@ public class Author {
     @OneToMany(mappedBy = "author", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Book> books;
 
-    public Author() { }
+    public Author() {
+    }
 
     public Author(String name) {
         this.name = name;
@@ -41,7 +40,11 @@ public class Author {
     }
 
     public List<Book> getBooks() {
-        return Collections.unmodifiableList(books);
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public void addBook(Book book) {
@@ -50,46 +53,6 @@ public class Author {
         }
         this.books.add(book);
         book.setAuthor(this);
-    }
-
-    public void removeBook(Book book) {
-        this.books.remove(book);
-    }
-
-    @Override
-    public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    public static class Builder {
-
-        private Author author;
-
-        private Builder() {
-            this.author = new Author();
-        }
-
-        public static Builder createBuilder() {
-            return new Builder();
-        };
-
-        public Builder name(String name) {
-            this.author.setName(name);
-            return this;
-        }
-
-        public Builder books(Book...books) {
-            Arrays.stream(books).forEach(this.author::addBook);
-            return this;
-        }
-
-        public Author build() {
-            return this.author;
-        }
-
     }
 
 }

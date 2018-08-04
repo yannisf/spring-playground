@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface AuthorService {
 
-    Optional<Author> find(Long id);
+    Author find(Long id);
 
     Author save(Author author);
 

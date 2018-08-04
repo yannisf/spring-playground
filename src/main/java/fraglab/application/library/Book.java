@@ -11,9 +11,6 @@ public class Book {
 
     private String title;
 
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
-
     @ManyToOne()
     private Author author;
 
@@ -49,14 +46,6 @@ public class Book {
         this.author = author;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
     @Override
     public String toString() {
         return "Book{" +
@@ -65,40 +54,5 @@ public class Book {
                 ", author=" + author +
                 '}';
     }
-
-    public static class Builder {
-
-        private Book book;
-
-        private Builder() {
-            this.book = new Book();
-        }
-
-        public static Book.Builder createBuilder() {
-            return new Book.Builder();
-        };
-
-        public Book.Builder title(String title) {
-            this.book.setTitle(title);
-            return this;
-        }
-
-        public Book.Builder genre(Genre genre) {
-            this.book.setGenre(genre);
-            return this;
-        }
-
-        public Book.Builder author(Author author) {
-            this.book.setAuthor(author);
-            author.addBook(this.book);
-            return this;
-        }
-
-        public Book build() {
-            return this.book;
-        }
-
-    }
-
 
 }

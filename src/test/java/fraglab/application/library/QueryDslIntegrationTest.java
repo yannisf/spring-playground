@@ -1,6 +1,5 @@
 package fraglab.application.library;
 
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -17,9 +16,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
-import static fraglab.application.library.Genre.FICTION;
-import static fraglab.application.library.Genre.SHORT_STORIES;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:dispatcher-servlet.xml")
@@ -38,24 +34,10 @@ public class QueryDslIntegrationTest {
 
     @Before
     public void setup() {
-        Author author1 = Author.Builder.createBuilder()
-                .name("Antonis Samarakis")
-                .books(
-                        Book.Builder.createBuilder().title("To Lathos").genre(FICTION).build(),
-                        Book.Builder.createBuilder().title("Ziteitai Elpis").genre(SHORT_STORIES).build(),
-                        Book.Builder.createBuilder().title("To Diavatirio").genre(SHORT_STORIES).build()
-                )
-                .build();
+        Author author1 = new Author("Antonis Samarakis");
         author1 = authorService.save(author1);
 
-        Author author2 = Author.Builder.createBuilder()
-                .name("Franz Kafka")
-                .books(
-                        Book.Builder.createBuilder().title("I diki").genre(FICTION).build(),
-                        Book.Builder.createBuilder().title("O Pirgos").genre(FICTION).build(),
-                        Book.Builder.createBuilder().title("I Metamorfosi").genre(SHORT_STORIES).build()
-                )
-                .build();
+        Author author2 = new Author("Franz Kafka");
         author2 = authorService.save(author2);
     }
 
@@ -72,7 +54,7 @@ public class QueryDslIntegrationTest {
                 .selectFrom(book)
                 .where(
                         book.author.name.containsIgnoreCase("samarakis")
-                                .and(book.genre.eq(SHORT_STORIES))).fetch();
+                ).fetch();
         System.out.println("Found: " + antonis_samarakis);
     }
 

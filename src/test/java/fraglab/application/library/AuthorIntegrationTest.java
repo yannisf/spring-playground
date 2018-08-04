@@ -1,6 +1,5 @@
 package fraglab.application.library;
 
-import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +10,6 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-
-import java.util.Optional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:dispatcher-servlet.xml")
@@ -30,21 +27,19 @@ public class AuthorIntegrationTest {
 
     @Test
     public void a_testFindNotFound() {
-        Optional<Author> author = authorService.find(1L);
-        Assert.assertFalse(author.isPresent());
+        Author author = authorService.find(1L);
     }
 
     @Test
     public void b_testInsert() {
-        Author author = Author.Builder.createBuilder().name("Antonis Samarakis").build();
+        Author author = new Author("Antonis Samarakis");
         author = authorService.save(author);
         authorId = author.getId();
     }
 
     @Test
     public void c_testLoadFound() {
-        Optional<Author> author = authorService.find(authorId);
-        Assert.assertTrue(author.isPresent());
+        Author author = authorService.find(authorId);
     }
 
     @Test
@@ -54,8 +49,7 @@ public class AuthorIntegrationTest {
 
     @Test
     public void e_testLoadNotFoundAfterDelete() {
-        Optional<Author> author = authorService.find(1L);
-        Assert.assertFalse(author.isPresent());
+        Author author = authorService.find(1L);
     }
 
 }

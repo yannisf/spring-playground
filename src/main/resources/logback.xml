@@ -22,7 +22,7 @@
     </appender>
 
     <logger name="org.hibernate" level="warn"/>
-    <logger name="org.springframework" level="warn"/>
+    <logger name="org.springframework" level="info"/>
 
     <logger name="fraglab" level="info"/>
 
