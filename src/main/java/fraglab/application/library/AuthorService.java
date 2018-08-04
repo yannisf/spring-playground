@@ -1,9 +1,5 @@
 package fraglab.application.library;
 
-import fraglab.application.library.Author;
-
-import java.util.Optional;
-
 public interface AuthorService {
 
     Author find(Long id);
