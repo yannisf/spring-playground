@@ -11,15 +11,10 @@ public class Book {
 
     private String title;
 
-    @ManyToOne()
+    @ManyToOne(optional = false)
     private Author author;
 
     public Book() {
-    }
-
-    public Book(String title, Author author) {
-        this.title = title;
-        this.author = author;
     }
 
     public Long getId() {
@@ -44,15 +39,6 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author=" + author +
-                '}';
     }
 
 }

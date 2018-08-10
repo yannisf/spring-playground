@@ -11,7 +11,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author find(Long id) {
-        return authorRepository.findOne(id);
+        return authorRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void delete(Long authorId) {
-        authorRepository.delete(authorId);
+        authorRepository.deleteById(authorId);
     }
 
 }

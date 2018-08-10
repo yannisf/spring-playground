@@ -47,12 +47,13 @@ public class Author {
         this.books = books;
     }
 
-    public void addBook(Book book) {
+    public Author addBook(Book book) {
         if (this.books == null) {
             this.books = new ArrayList<>();
         }
         this.books.add(book);
         book.setAuthor(this);
+        return this;
     }
 
 }

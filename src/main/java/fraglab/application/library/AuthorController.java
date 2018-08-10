@@ -16,10 +16,16 @@ public class AuthorController {
         return authorService.find(id);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = "application/x-www-form-urlencoded")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void save(@RequestParam String name) {
-        authorService.save(new Author(name));
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public Author saveFromParams(@RequestParam String name) {
+        return authorService.save(new Author(name));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public Author saveFromJson(@RequestBody Author author) {
+        return authorService.save(author);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
