@@ -3,6 +3,7 @@ package fraglab.application.it;
 import fraglab.application.ApplicationConfiguration;
 import fraglab.application.library.AuthorService;
 import fraglab.application.library.BookRepository;
+import fraglab.application.library.PublisherRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,6 +41,9 @@ public abstract class AbstractContextIntegrationTest {
 
     @Autowired
     protected BookRepository bookRepository;
+
+    @Autowired
+    protected PublisherRepository publisherRepository;
 
     @Test
     public void contextTest() {
