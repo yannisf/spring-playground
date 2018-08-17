@@ -2,8 +2,8 @@ package fraglab.application.it.context;
 
 import fraglab.application.it.AbstractContextIntegrationTest;
 import fraglab.application.library.Author;
-import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

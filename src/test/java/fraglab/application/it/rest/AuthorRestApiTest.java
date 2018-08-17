@@ -3,14 +3,13 @@ package fraglab.application.it.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fraglab.application.it.AbstractRestIntegrationTest;
 import fraglab.application.library.Author;
-import org.junit.Test;
 import org.springframework.http.*;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AuthorRestApiTest extends AbstractRestIntegrationTest {
 
@@ -29,7 +28,7 @@ public class AuthorRestApiTest extends AbstractRestIntegrationTest {
         Author postAuthor = exchange.getBody();
         Long id = postAuthor.getId();
         Author getAuthor = restTemplate.getForObject(String.format("%s/%s", resourceUrl, id), Author.class);
-        assertThat(getAuthor.getName(), equalTo("Yannis"));
+        assertThat(getAuthor.getName()).isEqualTo("Yannis");
     }
 
 }

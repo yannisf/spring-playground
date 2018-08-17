@@ -11,6 +11,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
@@ -38,9 +39,9 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactory) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager platformTransactionManager = new JpaTransactionManager();
-        platformTransactionManager.setEntityManagerFactory(entityManagerFactory.getObject());
+        platformTransactionManager.setEntityManagerFactory(entityManagerFactory);
         return platformTransactionManager;
     }
 
