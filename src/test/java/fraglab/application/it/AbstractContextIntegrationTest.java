@@ -1,6 +1,7 @@
 package fraglab.application.it;
 
 import fraglab.application.ApplicationConfiguration;
+import fraglab.application.library.AuthorRepository;
 import fraglab.application.library.AuthorService;
 import fraglab.application.library.BookRepository;
 import fraglab.application.library.PublisherRepository;
@@ -39,6 +40,9 @@ public abstract class AbstractContextIntegrationTest extends AbstractTestNGSprin
 
     @Autowired
     protected AuthorService authorService;
+
+    @Autowired
+    protected AuthorRepository authorRepository;
 
     @Autowired
     protected BookRepository bookRepository;
