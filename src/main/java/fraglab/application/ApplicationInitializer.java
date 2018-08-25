@@ -10,7 +10,7 @@ import javax.servlet.ServletRegistration;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 
-    public static final String API_CONTEXT = "/api/*";
+    private static final String API_CONTEXT = "/api/*";
 
     @Override
     public void onStartup(ServletContext container) {
