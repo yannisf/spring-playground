@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 
 public abstract class AbstractRestIntegrationTest {
 
-    private static final EmbeddedServer EMBEDDED_SERVER = new EmbeddedTomcat();
+    private static final EmbeddedServer EMBEDDED_SERVER = new EmbeddedJetty();
     protected RestTemplate restTemplate = new RestTemplate();
 
     @BeforeClass

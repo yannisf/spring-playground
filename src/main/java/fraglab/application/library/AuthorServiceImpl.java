@@ -1,6 +1,7 @@
 package fraglab.application.library;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,11 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public void delete(Long authorId) {
         authorRepository.deleteById(authorId);
+    }
+
+    @EventListener
+    public void processAuthorCreatedEvent(AuthorCreatedEvent event) {
+        System.out.println(event);
     }
 
 }

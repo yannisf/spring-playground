@@ -1,6 +1,7 @@
 package fraglab.application.it.embedded;
 
 import fraglab.application.ApplicationInitializer;
+import fraglab.application.SpringSecurityInitializer;
 import org.eclipse.jetty.annotations.AnnotationConfiguration;
 import org.eclipse.jetty.annotations.ClassInheritanceHandler;
 import org.eclipse.jetty.server.Server;
@@ -30,6 +31,7 @@ public class EmbeddedJetty implements EmbeddedServer {
                         ClassInheritanceMap map = new ClassInheritanceMap();
                         ConcurrentHashMap.KeySetView<String, Boolean> keySet = ConcurrentHashMap.newKeySet();
                         keySet.add(ApplicationInitializer.class.getName());
+                        keySet.add(SpringSecurityInitializer.class.getName());
                         map.put(WebApplicationInitializer.class.getName(), keySet);
                         context.setAttribute(CLASS_INHERITANCE_MAP, map);
                         _classInheritanceHandler = new ClassInheritanceHandler(map);

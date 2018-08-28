@@ -22,7 +22,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/secure/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/api/secure/**").access("hasRole('ROLE_ADMIN')")
-                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and().csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .ignoringAntMatchers("/api/**")
                 .and().formLogin();
     }
 

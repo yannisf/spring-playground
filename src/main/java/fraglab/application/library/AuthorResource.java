@@ -2,12 +2,16 @@ package fraglab.application.library;
 
 import fraglab.application.annotations.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/author")
 public class AuthorResource {
+
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
     @Autowired
     AuthorService authorService;
@@ -27,7 +31,9 @@ public class AuthorResource {
     @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public Author saveFromJson(@RequestBody Author author) {
-        return authorService.save(author);
+        Author createdAuthor = authorService.save(author);
+        publisher.publishEvent(new AuthorCreatedEvent(this, createdAuthor));
+        return createdAuthor;
     }
 
     @DeleteMapping(value = "/{id}")

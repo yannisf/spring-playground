@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AuthRestApiTest {
 
-    private static final String BASE_URL = "http://localhost:8888/playground/";
+    private static final String BASE_URL = "http://localhost:8080/playground/";
 
     private RestTemplate restTemplate = new RestTemplate();
 
