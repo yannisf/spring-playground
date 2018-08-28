@@ -1,6 +1,7 @@
 package fraglab.application.library;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Size(min = 1, max = 6)
     private String name;
 
     @OneToMany(mappedBy = "author", cascade = {CascadeType.ALL}, orphanRemoval = true)

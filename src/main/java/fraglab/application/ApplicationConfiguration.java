@@ -8,12 +8,14 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import javax.validation.Validator;
 
 @Configuration
 @EnableWebMvc
@@ -60,6 +62,11 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
         JpaTransactionManager platformTransactionManager = new JpaTransactionManager();
         platformTransactionManager.setEntityManagerFactory(entityManagerFactory);
         return platformTransactionManager;
+    }
+
+    @Bean
+    public Validator validatorFactory () {
+        return new LocalValidatorFactoryBean();
     }
 
 }

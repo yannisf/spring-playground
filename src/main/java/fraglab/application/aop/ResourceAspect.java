@@ -28,7 +28,7 @@ public class ResourceAspect {
     @Before("fraglab.application.aop.ResourceAspect.publicResourceMethods()")
     public void doBefore(JoinPoint joinPoint) {
         LOG.info("{}", joinPoint.getStaticPart().toLongString());
-        Stream.of(joinPoint.getArgs()).forEach( a -> LOG.info("{}: {}", a.getClass().getSimpleName(), a));
+        Stream.of(joinPoint.getArgs()).forEach( a -> LOG.info("{}: {}", a.getClass().getSimpleName(), a.toString()));
     }
 
     @Around("fraglab.application.aop.ResourceAspect.timed()")
