@@ -63,7 +63,7 @@ public abstract class AbstractContextIntegrationTest extends AbstractTestNGSprin
         ServletContext servletContext = wac.getServletContext();
         assertThat(servletContext).isNotNull();
         assertThat(servletContext).isInstanceOf(MockServletContext.class);
-        assertThat(wac.getBean("authorController")).isNotNull();
+        assertThat(wac.getBean("authorResource")).isNotNull();
     }
 
 }

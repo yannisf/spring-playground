@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/secure/author")
-public class SecureAuthorController {
+public class SecureAuthorResource {
 
     @GetMapping
     public String get() {
