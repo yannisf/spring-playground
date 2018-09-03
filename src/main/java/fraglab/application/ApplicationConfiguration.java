@@ -1,9 +1,9 @@
 package fraglab.application;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -40,11 +40,11 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
     private String password;
 
     @Bean
-    public DriverManagerDataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    public DataSource dataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setMaximumPoolSize(10);
         dataSource.setDriverClassName(driverClassName);
-//        dataSource.setUrl("jdbc:hsqldb:file:/tmp/xyzuvw");
-        dataSource.setUrl(url);
+        dataSource.setJdbcUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         return dataSource;
@@ -65,7 +65,7 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public Validator validatorFactory () {
+    public Validator validatorFactory() {
         return new LocalValidatorFactoryBean();
     }
 

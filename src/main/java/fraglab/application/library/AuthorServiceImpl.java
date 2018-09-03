@@ -3,6 +3,7 @@ package fraglab.application.library;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -26,6 +27,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @EventListener
+    @Override
     public void processAuthorCreatedEvent(AuthorCreatedEvent event) {
         System.out.println(event);
     }

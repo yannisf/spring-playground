@@ -1,5 +1,7 @@
 package fraglab.application.library;
 
+import org.springframework.context.event.EventListener;
+
 public interface AuthorService {
 
     Author find(Long id);
@@ -7,4 +9,7 @@ public interface AuthorService {
     Author save(Author author);
 
     void delete(Long id);
+
+    @EventListener
+    void processAuthorCreatedEvent(AuthorCreatedEvent event);
 }
