@@ -2,7 +2,7 @@
 *.iml
 *.log
 *.log-*
-/target
+target/
 /.vscode
 /.settings
 .project

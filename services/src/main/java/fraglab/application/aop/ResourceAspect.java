@@ -8,13 +8,14 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 import java.util.stream.Stream;
 
 @Aspect
-@Component
+@Configuration
 public class ResourceAspect {
 
     private static final Logger LOG = LoggerFactory.getLogger(ResourceAspect.class);

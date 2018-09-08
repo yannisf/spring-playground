@@ -12,7 +12,7 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Size(min = 1, max = 6)
+    @Size(min = 1, max = 16)
     private String name;
 
     @OneToMany(mappedBy = "author", cascade = {CascadeType.ALL}, orphanRemoval = true)
