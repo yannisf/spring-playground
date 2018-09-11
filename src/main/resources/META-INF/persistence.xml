@@ -11,7 +11,7 @@
             <property name="eclipselink.weaving" value="false" />
             <property name="eclipselink.logging.level.sql" value="FINE" />
             <property name="eclipselink.logging.parameters" value="true"/>
-            <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.HSQLPlatform"/>
+            <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform"/>
         </properties>
     </persistence-unit>
 

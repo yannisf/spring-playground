@@ -57,6 +57,7 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager platformTransactionManager = new JpaTransactionManager();
         platformTransactionManager.setEntityManagerFactory(entityManagerFactory);
+        platformTransactionManager.setDefaultTimeout(5);
         return platformTransactionManager;
     }
 
