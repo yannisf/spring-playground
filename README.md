@@ -4,7 +4,7 @@ This is a minimal Spring project to experiment with JPA transaction timeout.
 
 ## Prerequisites
 
-1. An oracle database
+1. A PostgreSQL database
 2. Java 8/Maven2
 
 ## Information on the code
@@ -40,31 +40,7 @@ curl -X POST \
 
 It seems that the transaction timeout is not enforced. Why is that and how can it be enforced?
 
-### ANNEX 1: Oracle JDBC 
-
-The Oracle JDBC driver has to be available in your local repository in order to satify the following dependency.
-
-```xml
-<dependency>
-    <groupId>com.oracle</groupId>
-    <artifactId>ojdbc6</artifactId>
-    <version>11.2.0.4</version>
-</dependency>
-``` 
-
-I downloaded it from [Oracle](http://download.oracle.com/otn/utilities_drivers/jdbc/11204/ojdbc6.jar) 
-(you need an Oracle account for that), and installed it using:
-
-```
-$ mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 -Dpackaging=jar -Dversion=11.2.0.4 -Dfile=ojdbc6.jar -DgeneratePom=true 
-```
-
-### ANNEX 2: Delay script
-
-In the `/external` folder there is a stored procedure to install in Oracle. Invoking this introduces a delay. You need
-to install this before running the application.
-
-### ANNEX 3: Run the application
+## Run the application
 
 Run the application:
 
@@ -72,3 +48,5 @@ Run the application:
 $ mvn tomcat7:run
 ```
 
+- Execute the first curl to insert a record
+- Execute the second curl to update the record, adding a delay in the database

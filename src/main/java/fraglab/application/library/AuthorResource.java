@@ -13,7 +13,6 @@ import javax.persistence.*;
 public class AuthorResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthorResource.class);
-    private static final int DELAY_IN_SECONDS = 10;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -30,11 +29,8 @@ public class AuthorResource {
         Author author = entityManager.find(Author.class, id);
         author.setName(name);
 
-        LOG.info("Running user_util.sleep for [{}] seconds", DELAY_IN_SECONDS);
-        StoredProcedureQuery storedProcedure = entityManager.createStoredProcedureQuery("user_util.sleep");
-        storedProcedure.registerStoredProcedureParameter("num_of_sec", Integer.class, ParameterMode.IN);
-        storedProcedure.setParameter("num_of_sec", DELAY_IN_SECONDS);
-        storedProcedure.execute();
+        Query query = entityManager.createNativeQuery("select pg_sleep(10)");
+        query.getSingleResult();
 
         LOG.info("Updating author[{}]", id);
         return entityManager.merge(author);
